@@ -50,7 +50,7 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - **
+      - flask-app/**
 
 env:
   TF_LOG: INFO
