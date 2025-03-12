@@ -1,6 +1,5 @@
 provider "aws" {
   region  = "us-east-1"
-  profile = "twbeach"
 }
 
 resource "aws_s3_bucket" "terraform_state" {
