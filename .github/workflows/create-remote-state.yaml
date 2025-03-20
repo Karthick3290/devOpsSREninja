@@ -16,7 +16,7 @@ jobs:
      run:
        shell: bash
       #  We keep Terraform files in the terraform directory.
-       working-directory: ./remote-state
+       working-directory: ./flask-app/remote-state
  
    steps:
      - name: Checkout the repository to the runner
