@@ -21,6 +21,10 @@ jobs:
    steps:
      - name: Checkout the repository to the runner
        uses: actions/checkout@v2
+      
+     - name: Cleanup security token
+       run: |
+         unset AWS_SESSION_TOKEN
     
      - name: Configure AWS Credentials Actions for github actions
        uses: aws-actions/configure-aws-credentials@v4
