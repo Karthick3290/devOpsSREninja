@@ -57,6 +57,11 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     environment: production
+  defaults:
+     run:
+       shell: bash
+       # We keep Terraform files in the terraform directory.
+       working-directory: ./remote-state
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
