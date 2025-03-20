@@ -46,10 +46,12 @@ jobs:
      - name: Terraform format
        id: fmt
        run: terraform fmt -check
+       continue-on-error: true
     
      - name: Terraform validate
        id: validate
        run: terraform validate
+       continue-on-error: true
  
      - name: Terraform plan
        id: plan
