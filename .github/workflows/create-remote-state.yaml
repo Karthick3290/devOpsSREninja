@@ -15,8 +15,8 @@ jobs:
    defaults:
      run:
        shell: bash
-       # We keep Terraform files in the terraform directory.
-      #  working-directory: ./remote-state
+      #  We keep Terraform files in the terraform directory.
+       working-directory: ./remote-state
  
    steps:
      - name: Checkout the repository to the runner
