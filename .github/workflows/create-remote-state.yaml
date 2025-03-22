@@ -1,4 +1,4 @@
-name: "Terraform infrastructure to create resource for s3 and dynamodb"
+name: "resources for state and state locking"
 
 on:
   schedule:
