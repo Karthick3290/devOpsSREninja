@@ -10,7 +10,7 @@ on:
 
 jobs:
  terraform:
-   name: "Terraform Infrastructure Change Management"
+   name: "Terraform Infrastructure for networking"
    runs-on: ubuntu-latest
    defaults:
      run:
