@@ -36,11 +36,10 @@ resource "aws_eks_cluster" "flask_eks_cluster" {
   role_arn = aws_iam_role.eks_iam_role.arn
   version = "1.31"
   vpc_config {
-    subnet_ids = [concat(
+    subnet_ids = concat(
         module.networking_flask.aws_subnet_public_ids,
         module.networking_flask.aws_subnet_public_ids
     )
-    ]
   }
 
   depends_on = [ aws_iam_role_policy_attachment.eks_iam_policy_attachment]
