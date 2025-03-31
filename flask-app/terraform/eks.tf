@@ -37,8 +37,8 @@ resource "aws_eks_cluster" "flask_eks_cluster" {
   version = "1.31"
   vpc_config {
     subnet_ids = [
-        aws_subnet_public_ids,
-        aws_subnet_public_ids
+        module.networking_flask.aws_subnet_public_ids,
+        module.networking_flask.aws_subnet_public_ids
     ]
   }
 
