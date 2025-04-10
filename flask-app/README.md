@@ -16,6 +16,7 @@ The cluster should include a managed Node group to ensure efficient scaling and 
 3. Python Flask Containerization
 
 Dockerize a Python Flask application. Ensure that the container is optimized for a Kubernetes environment.
+
 4. Helm Chart for Flask Application
 
 Develop a Helm chart for the deployment of the Python Flask application. This chart should define all necessary Kubernetes resources and configurations.
