@@ -5,7 +5,7 @@
 # networking -> vpc,subnet, security groups
 # cluster endpoint access -> private,public or both with cidr block
 
-resource "aws_iam_role" "eks_iam_role" {
+resource "aws_iam_role" "eks_cluster_role" {
   name               = "flask-eks-iam-role"
   assume_role_policy = <<POLICY
   {
@@ -27,7 +27,7 @@ POLICY
 }
 
 resource "aws_iam_role_policy_attachment" "flask_eks_cluster_policy" {
-  role       = aws_iam_role.eks_iam_role.name
+  role       = aws_iam_role.eks_cluster_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
 }
 
