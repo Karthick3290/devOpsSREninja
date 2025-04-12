@@ -4,9 +4,9 @@ on:
   push:
     branches: 
         - main
-    paths:
-      - "flask-app/terraform/modules/networking/*"
-      - "flask-app/terraform"
+    # paths:
+    #   - "flask-app/terraform/modules/networking/*"
+    #   - "flask-app/terraform"
   pull_request:
     branches:
         - main
