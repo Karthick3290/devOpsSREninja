@@ -1,4 +1,4 @@
-name: "networking resources"
+name: "eks resources"
 
 on:
   push:

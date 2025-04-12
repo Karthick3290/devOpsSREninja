@@ -34,7 +34,7 @@ resource "aws_iam_role_policy_attachment" "flask_eks_cluster_policy" {
 resource "aws_eks_cluster" "flask_eks_cluster" {
   name     = "flask-eks-cluster"
   role_arn = aws_iam_role.eks_cluster_role.arn
-  version  = var.version
+  version  = var.eks_version
   vpc_config {
 
     endpoint_private_access = true
