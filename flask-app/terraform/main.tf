@@ -5,3 +5,12 @@ module "networking_flask" {
   private_subnet_cidr = ["10.2.25.0/24", "10.2.35.0/24"]
   availability_zones  = ["us-east-1a", "us-east-1b"]
 }
+
+module "eks_flask" {
+  source = "./modules/eks"
+  ami_type        = "AL2_x86_64"
+  instance_types  = ["t3.micro"]
+  capacity_type   = "ON_DEMAND"
+  disk_size       = 20
+  version  = "1.31"
+}

@@ -39,10 +39,10 @@ resource "aws_eks_node_group" "flask_eks_nodegroup" {
   node_group_name = "flask-worked-node-group"
   node_role_arn   = aws_iam_role.nodes_iam_role.arn
   subnet_ids      = module.networking_flask.aws_subnet_private_ids
-  ami_type        = "AL2_x86_64"
-  instance_types  = ["t3.micro"]
-  capacity_type   = "ON_DEMAND"
-  disk_size       = 20
+  ami_type        = var.ami_type
+  instance_types  = var.instance_types
+  capacity_type   = var.capacity_type
+  disk_size       = var.disk_size
 
   scaling_config {
     max_size     = 3

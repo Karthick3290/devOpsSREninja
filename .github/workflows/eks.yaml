@@ -5,7 +5,7 @@ on:
     branches: 
         - main
     paths:
-      - "flask-app/terraform/modules/networking/*"
+      - "flask-app/terraform/modules/eks/*"
       - "flask-app/terraform"
   pull_request:
     branches:

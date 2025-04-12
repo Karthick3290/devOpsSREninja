@@ -34,8 +34,12 @@ resource "aws_iam_role_policy_attachment" "flask_eks_cluster_policy" {
 resource "aws_eks_cluster" "flask_eks_cluster" {
   name     = "flask-eks-cluster"
   role_arn = aws_iam_role.eks_cluster_role.arn
-  version  = "1.31"
+  version  = var.version
   vpc_config {
+
+    endpoint_private_access = true
+    endpoint_public_access  = true
+    
     subnet_ids = concat(
       module.networking_flask.aws_subnet_private_ids,
       module.networking_flask.aws_subnet_public_ids
