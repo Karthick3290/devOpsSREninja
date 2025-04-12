@@ -5,8 +5,8 @@ on:
   #   - cron: "0 0 * * Mon"
   push:
     branches: [ main ]
-    # paths:
-    #   - "flask-app/remote-state/main.tf"
+    paths:
+      - "flask-app/remote-state/main.tf"
   # pull_request:
   #   branches: [ main ]
 
@@ -31,11 +31,9 @@ jobs:
           AWS_REGION:
           AWS_ACCESS_KEY_ID:
           AWS_SECRET_ACCESS_KEY:
-          AWS_SESSION_TOKEN:
        with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: "us-east-1"
  
      - name: Setup Terraform CLI
