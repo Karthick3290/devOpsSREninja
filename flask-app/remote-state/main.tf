@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "flask-app-ninja-tfstate"
+  bucket = "flask-tfstate"
   # lifecycle {
   #   prevent_destroy = true
   # }
