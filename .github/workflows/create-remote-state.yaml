@@ -1,12 +1,12 @@
 name: "resources for state and state locking"
 
 on:
-  schedule:
-    - cron: "0 0 * * Mon"
+  # schedule:
+  #   - cron: "0 0 * * Mon"
   push:
     branches: [ main ]
-    paths:
-      - "flask-app/remote-state/main.tf"
+    # paths:
+    #   - "flask-app/remote-state/main.tf"
   # pull_request:
   #   branches: [ main ]
 
