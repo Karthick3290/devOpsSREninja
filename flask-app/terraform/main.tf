@@ -7,10 +7,10 @@ module "networking_flask" {
 }
 
 module "eks_flask" {
-  source = "./modules/eks"
+  source = "./modules/eks-flask"
   ami_type        = "AL2_x86_64"
   instance_types  = ["t3.micro"]
   capacity_type   = "ON_DEMAND"
   disk_size       = 20
-  version  = "1.31"
+  eks_version  = "1.31"
 }

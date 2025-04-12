@@ -30,6 +30,6 @@ variable "capacity_type" {
 variable "disk_size" {
   type = number
 }
-variable "version" {
+variable "eks_version" {
   type = string
 }
