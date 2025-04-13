@@ -1,3 +1,8 @@
+provider "aws" {
+  alias  = "eks"
+  region = var.region
+}
+
 module "networking_flask" {
   source              = "./modules/networking"
   vpc_cidr            = "10.2.0.0/16"
@@ -13,5 +18,8 @@ module "eks_flask" {
   capacity_type   = "ON_DEMAND"
   disk_size       = 20
   eks_version  = "1.31"
+  providers = {
+    aws=aws.eks
+  }
   depends_on = [ module.networking_flask ]
 }
