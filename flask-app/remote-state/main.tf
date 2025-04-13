@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "flask-tfstate"
+  bucket = "flask-aws-tfstate"
   # lifecycle {
   #   prevent_destroy = true
   # }
@@ -16,13 +16,13 @@ resource "aws_s3_bucket_versioning" "terraform_state" {
   }
 }
 
-resource "aws_dynamodb_table" "table_state_locking" {
-   name                        = "terraform-state-locking"
-   hash_key                    = "LockID"
-   billing_mode                = "PAY_PER_REQUEST"
-   # deletion_protection_enabled = true
-   attribute {
-     name = "LockID"
-     type = "S"
-   }
-}
+# resource "aws_dynamodb_table" "table_state_locking" {
+#    name                        = "terraform-state-locking"
+#    hash_key                    = "LockID"
+#    billing_mode                = "PAY_PER_REQUEST"
+#    # deletion_protection_enabled = true
+#    attribute {
+#      name = "LockID"
+#      type = "S"
+#    }
+# }
