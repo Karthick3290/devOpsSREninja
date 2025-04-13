@@ -1,6 +1,11 @@
 name: "eks resources"
 
 on:
+  workflow_run:
+    workflows: ["networking resources"]
+    branches: [main]
+    types:
+      - completed
   push:
     branches: 
         - main
@@ -12,6 +17,8 @@ on:
         - main
 
 jobs:
+#  deploy:
+#    if: ${{ github.event.workflow_run.conclusion == 'success' }}
  terraform:
    name: "Terraform Infrastructure for networking"
    runs-on: ubuntu-latest
