@@ -25,17 +25,19 @@ fi
 
 
 ROLE_NAME="AWSServiceRoleForSupport"
+
 echo "Checking if IAM role $ROLE_NAME exists..."
 
-ROLE_CHECK=$(aws iam get-role --role-name "$ROLE_NAME" --output json 2>/dev/null)
+# Try to get the role; suppress error output, capture result
+aws iam get-role --role-name "$ROLE_NAME" --output text > /dev/null 2>&1
 
-if [ $? -eq 0 ] && [ -n "$ROLE_CHECK" ]; then
-  ROLE_ARN=$(echo "$ROLE_CHECK" | jq -r '.Role.Arn')
-  echo "IAM Role $ROLE_NAME exists with ARN: $ROLE_ARN"
+if [ $? -eq 0 ]; then
+  echo "IAM Role $ROLE_NAME exists. Importing..."
   terraform import aws_iam_role.eks_cluster_role "$ROLE_NAME"
 else
-  echo "IAM Role $ROLE_NAME does not exist or access denied. Skipping import."
+  echo "IAM Role $ROLE_NAME does not exist or permission denied. Skipping import."
 fi
+
 
 
 # Add more resources below similarly...
