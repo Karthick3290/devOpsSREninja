@@ -56,7 +56,8 @@ jobs:
        run: terraform validate
 
      - name: Import existing resources
-       run: ./flask-app/scripts/check-import-resources.sh
+       run: ls -al
+      #  run: ./flask-app/scripts/check-import-resources.sh
  
      - name: Terraform plan
        id: plan
