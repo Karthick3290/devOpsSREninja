@@ -4,7 +4,7 @@ terraform {
     bucket         = "flask-tfstate"
     region         = "us-east-1"
     key            = "terraform.tfstate"
-    dynamodb_table = "terraform-locks"
+    dynamodb_table = "terraform-state-locking"
     # use_lockfile = true
   }
 }
