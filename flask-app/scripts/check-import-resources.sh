@@ -24,7 +24,7 @@ fi
 # fi
 
 
-ROLE_NAME="flask-eks-iam-role"
+ROLE_NAME="AWSServiceRoleForSupport"
 echo "Checking if IAM role $ROLE_NAME exists..."
 
 ROLE_CHECK=$(aws iam get-role --role-name "$ROLE_NAME" --output json 2>/dev/null)
