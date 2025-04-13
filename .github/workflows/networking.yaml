@@ -55,11 +55,10 @@ jobs:
        id: validate
        run: terraform validate
  
-     - name: Terraform plan
-       id: plan
-      #  if: github.event_name == 'pull_request'
-       run: terraform plan
-      #  continue-on-error: true
+    #  - name: Terraform plan
+    #    id: plan
+    #    run: terraform plan
+    #   #  continue-on-error: true
     
      - name: Terraform Apply
       #  if: github.ref == 'refs/heads/main' && github.event_name == 'push'
