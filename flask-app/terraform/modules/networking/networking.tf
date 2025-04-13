@@ -2,6 +2,7 @@ resource "aws_vpc" "network-vpc" {
   cidr_block = var.vpc_cidr
   enable_dns_hostnames = true
   enable_dns_support = true
+
   tags = {
     Name = "flask-network-vpc"
   }
@@ -23,6 +24,7 @@ resource "aws_subnet" "private_subnets" {
   vpc_id = aws_vpc.network-vpc.id
   availability_zone = element(var.availability_zones,count.index)
   cidr_block = element(var.private_subnet_cidr,count.index)
+
   tags = {
     Name = "flask-network-subnet-private ${count.index + 1}"
   }
@@ -30,6 +32,7 @@ resource "aws_subnet" "private_subnets" {
 
 resource "aws_internet_gateway" "network-igw" {
   vpc_id = aws_vpc.network-vpc.id
+  
   tags = {
     Name = "flask-network-igw"
   }

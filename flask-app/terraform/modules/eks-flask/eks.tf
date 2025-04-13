@@ -38,6 +38,7 @@ resource "aws_eks_cluster" "flask_eks_cluster" {
   vpc_config {
     endpoint_private_access = true
     endpoint_public_access  = true
+
     subnet_ids = concat(
       var.subnet_private_ids,
       var.subnet_public_ids
