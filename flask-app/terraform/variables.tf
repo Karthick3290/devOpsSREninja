@@ -18,31 +18,31 @@ variable "vpc_cidr" {
   default = "10.2.0.0/16"
 }
 
-variable "ami_type" {
-  type = string
-}
-variable "instance_types" {
-  type = list(string)
-}
-variable "capacity_type" {
-  type = string
-}
-variable "disk_size" {
-  type = number
-  default = 20
-}
-variable "eks_version" {
-  type = string
-  default = "1.31"
-}
+# variable "ami_type" {
+#   type = string
+# }
+# variable "instance_types" {
+#   type = list(string)
+# }
+# variable "capacity_type" {
+#   type = string
+# }
+# variable "disk_size" {
+#   type = number
+#   default = 20
+# }
+# variable "eks_version" {
+#   type = string
+#   default = "1.31"
+# }
 
-variable "subnet_private_ids" {
-  type = list(string)
-}
+# variable "subnet_private_ids" {
+#   type = list(string)
+# }
 
-variable "subnet_public_ids" {
-  type = list(string)
-}
+# variable "subnet_public_ids" {
+#   type = list(string)
+# }
 
 variable "flask_name" {
   type = string
