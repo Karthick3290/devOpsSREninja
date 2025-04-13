@@ -1,4 +1,4 @@
-name: "networking resources"
+name: "networking & eks resources"
 
 on:
   push:
@@ -54,10 +54,13 @@ jobs:
      - name: Terraform validate
        id: validate
        run: terraform validate
+
+     - name: Import existing resources
+       run: ./flask-app/scripts/check-import-resources.sh
  
      - name: Terraform plan
        id: plan
-       run: terraform plan -lock=false
+       run: terraform plan -lock=false -detailed-exitcode
       #  continue-on-error: true
     
      - name: Terraform Apply
