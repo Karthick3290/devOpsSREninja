@@ -17,39 +17,41 @@ variable "vpc_cidr" {
   type    = string
   default = "10.2.0.0/16"
 }
+variable "ami_type" {
+  type = string
+  default = "AL2_x86_64"
+}
+variable "instance_types" {
+  type = list(string)
+  default = [ "t3.micro" ]
+}
+variable "capacity_type" {
+  type = string
+  default = "ON_DEMAND"
+}
+variable "disk_size" {
+  type = number
+  default = 20
+}
+variable "eks_version" {
+  type = string
+  default = "1.31"
+}
 
-# variable "ami_type" {
-#   type = string
-# }
-# variable "instance_types" {
-#   type = list(string)
-# }
-# variable "capacity_type" {
-#   type = string
-# }
-# variable "disk_size" {
-#   type = number
-#   default = 20
-# }
-# variable "eks_version" {
-#   type = string
-#   default = "1.31"
-# }
+variable "subnet_private_ids" {
+  type = list(string)
+}
 
-# variable "subnet_private_ids" {
-#   type = list(string)
-# }
-
-# variable "subnet_public_ids" {
-#   type = list(string)
-# }
+variable "subnet_public_ids" {
+  type = list(string)
+}
 
 variable "flask_name" {
-  type = string
+  type    = string
   default = "flask-network"
 }
 
 variable "region" {
-  type = string
+  type    = string
   default = "us-east-1"
 }

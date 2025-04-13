@@ -1,73 +1,73 @@
-# name: "eks resources"
+name: "eks resources"
 
-# on:
-#   workflow_run:
-#     workflows: ["networking resources"]
-#     branches: [main]
-#     types:
-#       - completed
-#   push:
-#     branches: 
-#         - main
-#     paths:
-#       - "flask-app/terraform/modules/eks/*"
-#       - "flask-app/terraform"
-#       - ".github/workflows/eks.yaml"
-#   pull_request:
-#     branches:
-#         - main
+on:
+  workflow_run:
+    workflows: ["networking resources"]
+    branches: [main]
+    types:
+      - completed
+  push:
+    branches: 
+        - main
+    paths:
+      - "flask-app/terraform/modules/eks/*"
+      - "flask-app/terraform"
+      - ".github/workflows/eks.yaml"
+  pull_request:
+    branches:
+        - main
 
-# jobs:
-# #  deploy:
-# #    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-#  terraform:
-#    name: "Terraform Infrastructure for networking"
-#    runs-on: ubuntu-latest
-#    defaults:
-#      run:
-#        shell: bash
-#       #  We keep Terraform files in the terraform directory.
-#        working-directory: ./flask-app/terraform
+jobs:
+#  deploy:
+#    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+ terraform:
+   name: "Terraform Infrastructure for networking"
+   runs-on: ubuntu-latest
+   defaults:
+     run:
+       shell: bash
+      #  We keep Terraform files in the terraform directory.
+       working-directory: ./flask-app/terraform
  
-#    steps:
-#      - name: Checkout the repository to the runner
-#        uses: actions/checkout@v2
+   steps:
+     - name: Checkout the repository to the runner
+       uses: actions/checkout@v2
     
-#      - name: Configure AWS Credentials Actions for github actions
-#        uses: aws-actions/configure-aws-credentials@v4
-#        env:
-#           AWS_DEFAULT_REGION:
-#           AWS_REGION:
-#           AWS_ACCESS_KEY_ID:
-#           AWS_SECRET_ACCESS_KEY:
-#           AWS_SESSION_TOKEN:
-#        with:
-#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#           aws-region: "us-east-1"
+     - name: Configure AWS Credentials Actions for github actions
+       uses: aws-actions/configure-aws-credentials@v4
+       env:
+          AWS_DEFAULT_REGION:
+          AWS_REGION:
+          AWS_ACCESS_KEY_ID:
+          AWS_SECRET_ACCESS_KEY:
+          AWS_SESSION_TOKEN:
+       with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: "us-east-1"
  
-#      - name: Setup Terraform CLI
-#        uses: hashicorp/setup-terraform@v2.0.2
+     - name: Setup Terraform CLI
+       uses: hashicorp/setup-terraform@v2.0.2
     
-#      - name: Terraform init
-#        id: init
-#        run: terraform init 
+     - name: Terraform init
+       id: init
+       run: terraform init 
  
-#      - name: Terraform format
-#        id: fmt
-#        run: terraform fmt -check
-#        continue-on-error: true
+     - name: Terraform format
+       id: fmt
+       run: terraform fmt -check
+       continue-on-error: true
     
-#      - name: Terraform validate
-#        id: validate
-#        run: terraform validate
+     - name: Terraform validate
+       id: validate
+       run: terraform validate
  
-#      - name: Terraform plan
-#        id: plan
-#       #  if: github.event_name == 'pull_request'
-#        run: terraform plan
-#       #  continue-on-error: true
+     - name: Terraform plan
+       id: plan
+      #  if: github.event_name == 'pull_request'
+       run: terraform plan -lock=false
+      #  continue-on-error: true
     
-#      - name: Terraform Apply
-#       #  if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-#        run: terraform apply -auto-approve -input=false
+    #  - name: Terraform Apply
+    #   #  if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    #    run: terraform apply -auto-approve -input=false -lock=false
