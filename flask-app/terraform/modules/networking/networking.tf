@@ -30,7 +30,7 @@ resource "aws_subnet" "private_subnets" {
 resource "aws_internet_gateway" "network-igw" {
   vpc_id = aws_vpc.network-vpc.id
   tags = {
-    Name = "flask-network-igw"
+    Name = join("-", [var.flask_name, "igw"])
   }
 }
 
