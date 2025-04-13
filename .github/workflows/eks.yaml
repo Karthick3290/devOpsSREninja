@@ -9,9 +9,10 @@ on:
   push:
     branches: 
         - main
-    # paths:
-    #   - "flask-app/terraform/modules/eks/*"
-    #   - "flask-app/terraform"
+    paths:
+      - "flask-app/terraform/modules/eks/*"
+      - "flask-app/terraform"
+      - ".github/workflows/eks.yaml"
   pull_request:
     branches:
         - main
