@@ -2,7 +2,6 @@ resource "aws_vpc" "network-vpc" {
   cidr_block = var.vpc_cidr
   enable_dns_hostnames = true
   enable_dns_support = true
-
   tags = {
     Name = "flask-network-vpc"
   }
@@ -13,7 +12,6 @@ resource "aws_subnet" "public_subnets" {
   vpc_id = aws_vpc.network-vpc.id
   availability_zone = element(var.availability_zones,count.index)
   cidr_block = element(var.public_subnet_cidr,count.index)
-  
   tags = {
     Name = "flask-network-subnet-public ${count.index + 1}"
   }
@@ -24,7 +22,6 @@ resource "aws_subnet" "private_subnets" {
   vpc_id = aws_vpc.network-vpc.id
   availability_zone = element(var.availability_zones,count.index)
   cidr_block = element(var.private_subnet_cidr,count.index)
-
   tags = {
     Name = "flask-network-subnet-private ${count.index + 1}"
   }
@@ -32,7 +29,6 @@ resource "aws_subnet" "private_subnets" {
 
 resource "aws_internet_gateway" "network-igw" {
   vpc_id = aws_vpc.network-vpc.id
-
   tags = {
     Name = "flask-network-igw"
   }
@@ -42,7 +38,6 @@ resource "aws_nat_gateway" "network-nat" {
   count = length(var.private_subnet_cidr)
   subnet_id = aws_subnet.private_subnets[count.index].id
   allocation_id = aws_eip.network-eip[count.index].id
-  
   tags = {
    Name = "network-nat-gw ${count.index + 1}"
  }
