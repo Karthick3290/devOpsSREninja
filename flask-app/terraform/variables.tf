@@ -42,6 +42,10 @@ variable "subnet_public_ids" {
   type = list(string)
 }
 
+variable "name" {
+  type = string
+}
+
 variable "region" {
   type = string
   default = "us-east-1"
