@@ -57,7 +57,7 @@ jobs:
  
      - name: Terraform plan
        id: plan
-       run: terraform plan
+       run: terraform plan -lock=false
       #  continue-on-error: true
     
     #  - name: Terraform Apply
