@@ -4,10 +4,10 @@ on:
   push:
     branches: 
         - main
-    # paths:
+    paths:
     #   - "flask-app/terraform/modules/networking/*"
-    #   - "flask-app/terraform"
-    #   - ".github/workflows/networking.yaml"
+      - "flask-app/terraform/*"
+      - ".github/workflows/networking.yaml"
   pull_request:
     branches:
         - main
@@ -20,7 +20,7 @@ jobs:
      run:
        shell: bash
       #  We keep Terraform files in the terraform directory.
-       working-directory: ./flask-app/terraform
+      #  working-directory: ./flask-app/terraform
  
    steps:
      - name: Checkout the repository to the runner
@@ -44,26 +44,31 @@ jobs:
     
      - name: Terraform init
        id: init
-       run: terraform init 
+       run: terraform init
+       working-directory: ./flask-app/terraform
  
      - name: Terraform format
        id: fmt
        run: terraform fmt -check
        continue-on-error: true
+       working-directory: ./flask-app/terraform
     
      - name: Terraform validate
        id: validate
        run: terraform validate
+       working-directory: ./flask-app/terraform
 
      - name: Import existing resources
-       run: ls -al
-      #  run: ./flask-app/scripts/check-import-resources.sh
+       working-directory: ./flask-app/scripts
+       run: check-import-resources.sh
  
      - name: Terraform plan
        id: plan
+       working-directory: ./flask-app/terraform
        run: terraform plan -lock=false -detailed-exitcode
       #  continue-on-error: true
     
      - name: Terraform Apply
+       working-directory: ./flask-app/terraform
       #  if: github.ref == 'refs/heads/main' && github.event_name == 'push'
        run: terraform apply -auto-approve -input=false -lock=false
