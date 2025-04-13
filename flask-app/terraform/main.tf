@@ -18,6 +18,8 @@ module "eks_flask" {
   capacity_type   = "ON_DEMAND"
   disk_size       = 20
   eks_version  = "1.31"
+ subnet_private_ids= module.networking_flask.aws_subnet_private_ids
+  subnet_public_ids=module.networking_flask.aws_subnet_public_ids
   providers = {
     aws=aws.eks
   }

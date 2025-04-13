@@ -34,6 +34,14 @@ variable "eks_version" {
   type = string
 }
 
+variable "subnet_private_ids" {
+  type = list(string)
+}
+
+variable "subnet_public_ids" {
+  type = list(string)
+}
+
 variable "region" {
   type = string
   default = "us-east-1"

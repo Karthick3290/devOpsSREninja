@@ -40,8 +40,8 @@ resource "aws_eks_cluster" "flask_eks_cluster" {
     endpoint_public_access  = true
 
     subnet_ids = concat(
-      module.networking_flask.aws_subnet_private_ids,
-      module.networking_flask.aws_subnet_public_ids
+      var.subnet_private_ids,
+      var.subnet_public_ids
     )
   }
 
