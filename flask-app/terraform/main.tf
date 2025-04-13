@@ -5,7 +5,7 @@ provider "aws" {
 
 module "networking_flask" {
   source              = "./modules/networking"
-  name = "flask-network"
+  flask_name = "flask-network"
   vpc_cidr            = "10.2.0.0/16"
   public_subnet_cidr  = ["10.2.200.0/24", "10.2.190.0/24"]
   private_subnet_cidr = ["10.2.25.0/24", "10.2.35.0/24"]

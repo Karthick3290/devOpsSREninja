@@ -42,7 +42,7 @@ variable "subnet_public_ids" {
   type = list(string)
 }
 
-variable "name" {
+variable "flask_name" {
   type = string
 }
 

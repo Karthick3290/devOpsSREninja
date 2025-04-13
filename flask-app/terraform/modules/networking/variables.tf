@@ -6,4 +6,4 @@ variable "private_subnet_cidr" {}
 
 variable "availability_zones" {}
 
-variable "name" {}
+variable "flask_name" {}
