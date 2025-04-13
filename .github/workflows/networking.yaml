@@ -60,7 +60,7 @@ jobs:
 
      - name: Import existing resources
        working-directory: ./flask-app/scripts
-       run: check-import-resources.sh
+       run: sudo sh check-import-resources.sh
  
      - name: Terraform plan
        id: plan
