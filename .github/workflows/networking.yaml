@@ -55,11 +55,11 @@ jobs:
        id: validate
        run: terraform validate
  
-    #  - name: Terraform plan
-    #    id: plan
-    #    run: terraform plan
-    #   #  continue-on-error: true
+     - name: Terraform plan
+       id: plan
+       run: terraform plan
+      #  continue-on-error: true
     
-     - name: Terraform Apply
-      #  if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-       run: terraform apply -auto-approve -input=false -lock=false
+    #  - name: Terraform Apply
+    #   #  if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    #    run: terraform apply -auto-approve -input=false -lock=false
