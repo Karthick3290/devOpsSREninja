@@ -46,6 +46,7 @@ variable "vpc_cidr" {
 
 variable "flask_name" {
   type = string
+  default = "flask-network"
 }
 
 variable "region" {
