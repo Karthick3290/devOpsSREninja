@@ -32,7 +32,7 @@ resource "aws_subnet" "private_subnets" {
 
 resource "aws_internet_gateway" "network-igw" {
   vpc_id = aws_vpc.network-vpc.id
-  
+
   tags = {
     Name = "flask-network-igw"
   }
@@ -42,6 +42,7 @@ resource "aws_nat_gateway" "network-nat" {
   count = length(var.private_subnet_cidr)
   subnet_id = aws_subnet.private_subnets[count.index].id
   allocation_id = aws_eip.network-eip[count.index].id
+  
   tags = {
    Name = "network-nat-gw ${count.index + 1}"
  }
