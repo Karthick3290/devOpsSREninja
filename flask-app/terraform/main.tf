@@ -11,17 +11,17 @@ module "networking_flask" {
   availability_zones  = ["us-east-1a", "us-east-1b"]
 }
 
-module "eks_flask" {
-  source = "./modules/eks-flask"
-  ami_type        = "AL2_x86_64"
-  instance_types  = ["t3.micro"]
-  capacity_type   = "ON_DEMAND"
-  disk_size       = 20
-  eks_version  = "1.31"
- subnet_private_ids= module.networking_flask.aws_subnet_private_ids
-  subnet_public_ids=module.networking_flask.aws_subnet_public_ids
-  providers = {
-    aws=aws.eks
-  }
-  depends_on = [ module.networking_flask ]
-}
+# module "eks_flask" {
+#   source = "./modules/eks-flask"
+#   ami_type        = "AL2_x86_64"
+#   instance_types  = ["t3.micro"]
+#   capacity_type   = "ON_DEMAND"
+#   disk_size       = 20
+#   eks_version  = "1.31"
+#  subnet_private_ids= module.networking_flask.aws_subnet_private_ids
+#   subnet_public_ids=module.networking_flask.aws_subnet_public_ids
+#   providers = {
+#     aws=aws.eks
+#   }
+#   depends_on = [ module.networking_flask ]
+# }
