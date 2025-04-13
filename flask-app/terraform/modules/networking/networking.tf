@@ -77,7 +77,7 @@ resource "aws_route_table" "network-route-public" {
     gateway_id = aws_internet_gateway.network-igw.id
   }
   tags = {
-    Name = "flask-route-table-public"
+    Name = join("-",[var.flask_name,"route-table-public"])
   }
   depends_on = [ aws_internet_gateway.network-igw ]
 }
