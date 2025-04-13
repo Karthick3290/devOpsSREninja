@@ -38,13 +38,13 @@ variable "eks_version" {
   default = "1.31"
 }
 
-variable "subnet_private_ids" {
-  type = list(string)
-}
+# variable "subnet_private_ids" {
+#   type = list(string)
+# }
 
-variable "subnet_public_ids" {
-  type = list(string)
-}
+# variable "subnet_public_ids" {
+#   type = list(string)
+# }
 
 variable "flask_name" {
   type    = string
