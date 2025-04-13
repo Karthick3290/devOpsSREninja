@@ -13,4 +13,5 @@ module "eks_flask" {
   capacity_type   = "ON_DEMAND"
   disk_size       = 20
   eks_version  = "1.31"
+  depends_on = [ module.networking_flask ]
 }
