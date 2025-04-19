@@ -4,7 +4,7 @@ resource "aws_vpc" "network-vpc" {
   enable_dns_support = true
   tags = {
     Name = join("-", [var.flask_name, "vpc"])
-  }
+  } 
 }
 
 resource "aws_subnet" "public_subnets" {
