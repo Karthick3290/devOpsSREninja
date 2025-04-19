@@ -7,5 +7,5 @@ output "aws_subnet_private_ids" {
 }
 
 output "eks_cluster_role_arn" {
-  value = module.iamroles_flask.eks-cluster-role-arn
+  value = module.iamroles_flask.eks_cluster_role_arn
 }
