@@ -1,0 +1,61 @@
+name: "networking & eks resources"
+
+on:
+  workflow_dispatch:
+
+jobs:
+ terraform:
+   name: "Terraform Infrastructure for networking"
+   runs-on: ubuntu-latest
+   defaults:
+     run:
+       shell: bash
+      #  We keep Terraform files in the terraform directory.
+      #  working-directory: ./flask-app/terraform
+ 
+   steps:
+     - name: Checkout the repository to the runner
+       uses: actions/checkout@v2
+    
+     - name: Configure AWS Credentials Actions for github actions
+       uses: aws-actions/configure-aws-credentials@v4
+       env:
+          AWS_DEFAULT_REGION:
+          AWS_REGION:
+          AWS_ACCESS_KEY_ID:
+          AWS_SECRET_ACCESS_KEY:
+          AWS_SESSION_TOKEN:
+       with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: "us-east-1"
+ 
+     - name: Setup Terraform CLI
+       uses: hashicorp/setup-terraform@v2.0.2
+    
+     - name: Terraform init
+       id: init
+       run: terraform init
+       working-directory: ./flask-app/terraform
+ 
+     - name: Terraform format
+       id: fmt
+       run: terraform fmt -check
+       continue-on-error: true
+       working-directory: ./flask-app/terraform
+    
+     - name: Terraform validate
+       id: validate
+       run: terraform validate
+       working-directory: ./flask-app/terraform
+ 
+     - name: Terraform plan
+       id: plan
+       working-directory: ./flask-app/terraform
+       run: terraform plan -lock=false -detailed-exitcode
+      #  continue-on-error: true
+
+     - name: Terraform Destroy
+       id: destroy
+       working-directory: ./flask-app/terraform
+       run: terraform destroy -auto-approve -lock=false
