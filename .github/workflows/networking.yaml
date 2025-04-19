@@ -60,22 +60,22 @@ jobs:
        run: terraform validate
        working-directory: ./flask-app/terraform
 
-    #  - name: Import existing resources
-    #    working-directory: ./flask-app/scripts
-    #    run: sudo sh check-import-resources.sh
+     - name: Import existing resources
+       working-directory: ./flask-app/scripts
+       run: sudo sh check-import-resources.sh
  
-    #  - name: Terraform plan
-    #    id: plan
-    #    working-directory: ./flask-app/terraform
-    #    run: terraform plan -lock=false -detailed-exitcode
-    #   #  continue-on-error: true
-    
-    #  - name: Terraform Apply
-    #    working-directory: ./flask-app/terraform
-    #   #  if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    #    run: terraform apply -auto-approve -input=false -lock=false
-
-     - name: Terraform Destroy
-       id: destroy
+     - name: Terraform plan
+       id: plan
        working-directory: ./flask-app/terraform
-       run: terraform destroy -auto-approve -lock=false
+       run: terraform plan -lock=false -detailed-exitcode
+      #  continue-on-error: true
+    
+     - name: Terraform Apply
+       working-directory: ./flask-app/terraform
+      #  if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+       run: terraform apply -auto-approve -input=false -lock=false
+
+    #  - name: Terraform Destroy
+    #    id: destroy
+    #    working-directory: ./flask-app/terraform
+    #    run: terraform destroy -auto-approve -lock=false
