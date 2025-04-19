@@ -60,9 +60,9 @@ jobs:
        run: terraform validate
        working-directory: ./flask-app/terraform
 
-     - name: Import existing resources
-       working-directory: ./flask-app/scripts
-       run: sudo sh check-import-resources.sh
+    #  - name: Import existing resources
+    #    working-directory: ./flask-app/scripts
+    #    run: sudo sh check-import-resources.sh
  
      - name: Terraform plan
        id: plan
