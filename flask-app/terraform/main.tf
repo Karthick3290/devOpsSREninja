@@ -24,7 +24,7 @@ module "eks_flask" {
   providers = {
     aws = aws.eks
   }
-  depends_on = [module.networking_flask, module.iamroles_flask]
+  depends_on = [module.networking_flask]
 }
 
 module "iamroles_flask" {
