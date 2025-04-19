@@ -27,6 +27,6 @@ module "eks_flask" {
   depends_on = [module.networking_flask]
 }
 
-module "iamroles_flask" {
-  source = "./modules/iam-resources"
-}
+# module "iamroles_flask" {
+#   source = "./modules/iam-resources"
+# }

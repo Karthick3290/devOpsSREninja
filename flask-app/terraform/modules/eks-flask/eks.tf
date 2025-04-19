@@ -22,5 +22,4 @@ resource "aws_eks_cluster" "flask_eks_cluster" {
       var.subnet_public_ids
     )
   }
-  # depends_on = [aws_iam_role_policy_attachment.flask_eks_cluster_policy]
 }
