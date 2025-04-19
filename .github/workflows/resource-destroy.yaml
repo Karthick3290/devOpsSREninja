@@ -1,4 +1,4 @@
-name: "networking & eks resources"
+name: "terraform destroy"
 
 on:
   workflow_dispatch:
