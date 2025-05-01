@@ -34,7 +34,7 @@ resource "aws_security_group" "eks_cluster_sg" {
 resource "aws_security_group" "eks_nodes_sg" {
   name = "allow_eks"
   description = "security group for nodes to be accessed by EKS"
-  vpc_id = aws_vpc.network-vpc.id
+  vpc_id = var.aws_vpc_id
 
 # Allow incoming HTTPS from control plane SG
   ingress = {
