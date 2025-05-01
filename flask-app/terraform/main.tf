@@ -21,6 +21,7 @@ module "eks_flask" {
   eks_version        = "1.31"
   subnet_private_ids = module.networking_flask.aws_subnet_private_ids
   subnet_public_ids  = module.networking_flask.aws_subnet_public_ids
+  aws_vpc_id = module.networking_flask.aws_vpc_id
   providers = {
     aws = aws.eks
   }
