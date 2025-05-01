@@ -43,6 +43,10 @@ resource "aws_security_group" "eks_nodes_sg" {
     to_port = 443
     protocol = "tcp"
     security_groups = [aws_security_group.eks_cluster_sg.id]
+    cidr_blocks     = []                  
+    ipv6_cidr_blocks = []                
+    prefix_list_ids = []
+    self            = false
   }]
   
   egress = [{
@@ -51,6 +55,10 @@ resource "aws_security_group" "eks_nodes_sg" {
     to_port = 0
     protocol = "-1"
     cidr_block = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = []
+    prefix_list_ids  = []
+    security_groups  = []
+    self             = false
   }]
 
   tags = {
