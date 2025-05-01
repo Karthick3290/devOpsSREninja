@@ -37,21 +37,21 @@ resource "aws_security_group" "eks_nodes_sg" {
   vpc_id = var.aws_vpc_id
 
 # Allow incoming HTTPS from control plane SG
-  ingress = {
+  ingress = [{
     description = "Allow control plane to talk to node kubelet"
     from_port = 443
     to_port = 443
     protocol = "tcp"
     security_groups = [aws_security_group.eks_cluster_sg.id]
-  }
+  }]
   
-  egress = {
+  egress = [{
     description = "Allow all outbound traffic"
     from_port = 0
     to_port = 0
     protocol = "-1"
     cidr_block = ["0.0.0.0/0"]
-  }
+  }]
 
   tags = {
     Name = "flask-eks-node-sg"
