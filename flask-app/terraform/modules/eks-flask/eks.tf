@@ -17,6 +17,7 @@ resource "aws_eks_cluster" "flask_eks_cluster" {
   vpc_config {
     endpoint_private_access = true
     endpoint_public_access  = true
+    security_group_ids = [aws_security_group.eks_cluster_sg.id]
 
     subnet_ids = concat(
       var.subnet_private_ids,
@@ -29,42 +30,10 @@ resource "aws_security_group" "eks_cluster_sg" {
   name = "eks-cluster-sg"
   description = "EKS Cluster security group"
   vpc_id = var.aws_vpc_id
+  tags = {
+  "kubernetes.io/cluster/${aws_eks_cluster.flask_eks_cluster.name}" = "owned"
 }
 
-resource "aws_security_group" "eks_nodes_sg" {
-  name = "allow_eks"
-  description = "security group for nodes to be accessed by EKS"
-  vpc_id = var.aws_vpc_id
-
-# Allow incoming HTTPS from control plane SG
-  ingress = [{
-    description = "Allow control plane to talk to node kubelet"
-    from_port = 443
-    to_port = 443
-    protocol = "tcp"
-    security_groups = [aws_security_group.eks_cluster_sg.id]
-    cidr_blocks     = []                  
-    ipv6_cidr_blocks = []                
-    prefix_list_ids = []
-    self            = false
-  }]
-  
-  egress = [{
-    description = "Allow all outbound traffic"
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = []
-    prefix_list_ids  = []
-    security_groups  = []
-    self             = false
-  }]
-
-  tags = {
-    Name = "flask-eks-node-sg"
-  }
-  depends_on = [ aws_security_group.eks_cluster_sg ]
 }
 
 resource "aws_security_group_rule" "cluster_ingress_from_node" {
