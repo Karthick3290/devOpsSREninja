@@ -1,45 +1,45 @@
 
-# data "aws_iam_role" "nodes_iam_role" {
-#   name = "flask-nodes-iam-role"
-# }
+data "aws_iam_role" "nodes_iam_role" {
+  name = "flask-nodes-iam-role"
+}
 
 # Role used to access nodes
 
-resource "aws_iam_role" "nodes_iam_role" {
-  name               = "flask-nodes-iam-role"
-  assume_role_policy = <<POLICY
-  {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "ec2.amazonaws.com"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-POLICY
-  tags = {
-    name = "flask-nodes-iam-role"
-  }
-}
+# resource "aws_iam_role" "nodes_iam_role" {
+#   name               = "flask-nodes-iam-role"
+#   assume_role_policy = <<POLICY
+#   {
+#   "Version": "2012-10-17",
+#   "Statement": [
+#     {
+#       "Effect": "Allow",
+#       "Principal": {
+#         "Service": "ec2.amazonaws.com"
+#       },
+#       "Action": "sts:AssumeRole"
+#     }
+#   ]
+# }
+# POLICY
+#   tags = {
+#     name = "flask-nodes-iam-role"
+#   }
+# }
 
-resource "aws_iam_role_policy_attachment" "flask_EKSWorkerNodePolicy" {
-  role       = aws_iam_role.nodes_iam_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
-}
+# resource "aws_iam_role_policy_attachment" "flask_EKSWorkerNodePolicy" {
+#   role       = aws_iam_role.nodes_iam_role.name
+#   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
+# }
 
-resource "aws_iam_role_policy_attachment" "flask_EKSCNIPolicy" {
-  role       = aws_iam_role.nodes_iam_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
-}
+# resource "aws_iam_role_policy_attachment" "flask_EKSCNIPolicy" {
+#   role       = aws_iam_role.nodes_iam_role.name
+#   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
+# }
 
-resource "aws_iam_role_policy_attachment" "flask_EC2_ECRPolicy" {
-  role       = aws_iam_role.nodes_iam_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
-}
+# resource "aws_iam_role_policy_attachment" "flask_EC2_ECRPolicy" {
+#   role       = aws_iam_role.nodes_iam_role.name
+#   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+# }
 
 
 resource "aws_security_group" "eks_nodes_sg" {
@@ -109,7 +109,7 @@ resource "aws_launch_template" "node_template" {
 resource "aws_eks_node_group" "flask_eks_nodegroup" {
   cluster_name    = aws_eks_cluster.flask_eks_cluster.name
   node_group_name = "flask-worked-node-group"
-  node_role_arn   = aws_iam_role.nodes_iam_role.arn
+  node_role_arn   = data.aws_iam_role.nodes_iam_role.arn
   subnet_ids      = var.subnet_private_ids
   capacity_type   = var.capacity_type
   scaling_config {
@@ -124,9 +124,9 @@ resource "aws_eks_node_group" "flask_eks_nodegroup" {
   }
 
   depends_on = [
-    aws_launch_template.node_template,
-    aws_iam_role_policy_attachment.flask_EC2_ECRPolicy,
-    aws_iam_role_policy_attachment.flask_EKSCNIPolicy,
-    aws_iam_role_policy_attachment.flask_EKSWorkerNodePolicy
+    aws_launch_template.node_template
+    # aws_iam_role_policy_attachment.flask_EC2_ECRPolicy,
+    # aws_iam_role_policy_attachment.flask_EKSCNIPolicy,
+    # aws_iam_role_policy_attachment.flask_EKSWorkerNodePolicy
   ]
 }
