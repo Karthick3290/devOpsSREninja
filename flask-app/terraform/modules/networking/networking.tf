@@ -102,7 +102,8 @@ resource "aws_route_table_association" "network-route-association" {
 }
 # Routing for NAT instance
 resource "aws_route" "outbound-nat-route" {
-  route_table_id = aws_route_table.network-route-private[0].id
+  count = length(var.private_subnet_cidr)
+  route_table_id = aws_route_table.network-route-private[count.index].id
   destination_cidr_block = "0.0.0.0/0"
   network_interface_id = aws_instance.nat-instance.primary_network_interface_id
 }
@@ -121,6 +122,15 @@ resource "aws_security_group_rule" "vpc-inbound" {
   to_port = 0
   protocol = "-1"
   cidr_blocks = [var.vpc_cidr]
+  security_group_id = aws_security_group.nat-instance-sg.id
+}
+
+resource "aws_security_group_rule" "nat-instance-private" {
+  type = "ingress"
+  from_port = 0
+  to_port = 0
+  protocol = "-1"
+  cidr_blocks = [var.private_subnet_cidr]
   security_group_id = aws_security_group.nat-instance-sg.id
 }
 
