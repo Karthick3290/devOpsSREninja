@@ -21,9 +21,9 @@ variable "ami_type" {
   type = string
   default = "AL2_x86_64"
 }
-variable "instance_types" {
-  type = list(string)
-  default = [ "t3.micro" ]
+variable "instance_type" {
+  type = string
+  default = "t2.micro"
 }
 variable "capacity_type" {
   type = string
