@@ -18,6 +18,16 @@ data "aws_ami" "amazon_linux_2" {
   }
 }
 
+data "aws_ami" "eks" {
+  most_recent = true
+  owners      = ["amazon"]
+
+    filter {
+    name   = "name"
+    values = ["amazon-eks-node-${var.eks_version}*"]
+  }
+}
+
 module "networking_flask" {
   source              = "./modules/networking"
   ami_data            = data.aws_ami.amazon_linux_2.id
@@ -31,7 +41,7 @@ module "networking_flask" {
 module "eks_flask" {
   source             = "./modules/eks-flask"
   flask_name         = "flask-network"
-  ami_data           = data.aws_ami.amazon_linux_2.id
+  ami_data           = data.aws_ami.eks.id
   instance_types     = "t2.micro"
   capacity_type      = "ON_DEMAND"
   disk_size          = 20

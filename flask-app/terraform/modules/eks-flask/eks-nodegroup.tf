@@ -87,7 +87,12 @@ resource "aws_launch_template" "node_template" {
   vpc_security_group_ids = [
     aws_security_group.eks_nodes_sg.id
   ]
-
+  
+  user_data = base64encode(<<-EOT
+  #!/bin/bash
+  /etc/eks/bootstrap.sh ${aws_eks_cluster.flask_eks_cluster.name}
+EOT
+)
   block_device_mappings {
     device_name = "/dev/xvda"
     ebs {
