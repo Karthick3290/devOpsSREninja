@@ -103,7 +103,7 @@ resource "aws_security_group_rule" "vpc-inbound" {
   from_port = 0
   to_port = 0
   protocol = "-1"
-  cidr_blocks = var.vpc_cidr
+  cidr_blocks = [var.vpc_cidr]
   security_group_id = aws_security_group.nat-instance-sg.id
 }
 
