@@ -60,7 +60,9 @@ resource "aws_launch_template" "node-template" {
 
   tag_specifications {
     resource_type = "instance"
-    tags = "flask-eks-node"
+    tags = {
+      Name = join("-", var.flask_name, "node")
+    }
   }
 
 }
