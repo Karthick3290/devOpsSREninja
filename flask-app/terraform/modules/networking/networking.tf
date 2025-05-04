@@ -11,6 +11,7 @@ resource "aws_subnet" "public_subnets" {
   count = length(var.public_subnet_cidr)
   vpc_id = aws_vpc.network-vpc.id
   availability_zone = element(var.availability_zones,count.index)
+  map_public_ip_on_launch = true
   cidr_block = element(var.public_subnet_cidr,count.index)
   tags = {
     Name = "flask-network-subnet-public ${count.index + 1}"
