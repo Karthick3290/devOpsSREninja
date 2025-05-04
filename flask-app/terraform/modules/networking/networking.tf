@@ -130,7 +130,7 @@ resource "aws_security_group_rule" "nat-instance-private" {
   from_port = 0
   to_port = 0
   protocol = "-1"
-  cidr_blocks = [var.private_subnet_cidr]
+  cidr_blocks = var.private_subnet_cidr
   security_group_id = aws_security_group.nat-instance-sg.id
 }
 
