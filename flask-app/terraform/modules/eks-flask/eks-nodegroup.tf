@@ -109,7 +109,7 @@ resource "aws_launch_template" "node-template" {
 resource "aws_eks_node_group" "flask_eks_nodegroup" {
   cluster_name    = aws_eks_cluster.flask_eks_cluster.name
   node_group_name = "flask-worked-node-group"
-  node_role_arn   = data.aws_iam_role.nodes_iam_role.arn
+  node_role_arn   = aws_iam_role.nodes_iam_role.arn
   subnet_ids      = var.subnet_private_ids
   capacity_type   = var.capacity_type
   scaling_config {
