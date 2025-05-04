@@ -124,7 +124,7 @@ resource "aws_eks_node_group" "flask_eks_nodegroup" {
   }
 
   depends_on = [
-    aws_launch_template.node-template,
+    aws_launch_template.node_template,
     aws_iam_role_policy_attachment.flask_EC2_ECRPolicy,
     aws_iam_role_policy_attachment.flask_EKSCNIPolicy,
     aws_iam_role_policy_attachment.flask_EKSWorkerNodePolicy
