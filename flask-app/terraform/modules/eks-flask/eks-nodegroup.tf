@@ -79,7 +79,7 @@ resource "aws_security_group" "eks_nodes_sg" {
   depends_on = [ aws_security_group.eks_cluster_sg ]
 }
 
-resource "aws_launch_template" "node-template" {
+resource "aws_launch_template" "node_template" {
   name = "flask-eks-launch-nodes"
   image_id = var.ami_type
   instance_type  = var.instance_types
@@ -116,6 +116,11 @@ resource "aws_eks_node_group" "flask_eks_nodegroup" {
     max_size     = 3
     min_size     = 1
     desired_size = 2
+  }
+
+   launch_template {
+    id      = aws_launch_template.node_template.id
+    version = "$Latest"
   }
 
   depends_on = [

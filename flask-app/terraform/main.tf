@@ -16,7 +16,7 @@ module "eks_flask" {
   source             = "./modules/eks-flask"
   flask_name          = "flask-network"
   ami_type           = var.ami_type
-  instance_types     = var.instance_type
+  instance_types     = "t2.micro"
   capacity_type      = "ON_DEMAND"
   disk_size          = 20
   eks_version        = "1.31"

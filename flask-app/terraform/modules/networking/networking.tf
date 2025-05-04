@@ -35,7 +35,7 @@ resource "aws_internet_gateway" "network-igw" {
 }
 
 resource "aws_instance" "nat-instance" {
-  ami = "AL2_x86_64"
+  ami = "ami-01179af425b2ee025"
   instance_type = "t2.micro"
   subnet_id = aws_route_table.network-route-public.id
   # vpc_security_group_ids = 
