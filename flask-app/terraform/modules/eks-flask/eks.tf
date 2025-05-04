@@ -30,10 +30,6 @@ resource "aws_security_group" "eks_cluster_sg" {
   name = "eks-cluster-sg"
   description = "EKS Cluster security group"
   vpc_id = var.aws_vpc_id
-  tags = {
-  "kubernetes.io/cluster/${aws_eks_cluster.flask_eks_cluster.name}" = "owned"
-}
-
 }
 
 resource "aws_security_group_rule" "cluster_ingress_from_node" {
