@@ -134,6 +134,15 @@ resource "aws_security_group_rule" "nat-instance-private" {
   security_group_id = aws_security_group.nat-instance-sg.id
 }
 
+resource "aws_security_group_rule" "nat-instance-private-HTTPS" {
+  type = "ingress"
+  from_port = 443
+  to_port = 443
+  protocol = "tcp"
+  cidr_blocks = var.private_subnet_cidr
+  security_group_id = aws_security_group.nat-instance-sg.id
+}
+
 resource "aws_security_group_rule" "outbound-nat-instance" {
   type = "egress"
   from_port = 0
