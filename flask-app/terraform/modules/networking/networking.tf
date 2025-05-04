@@ -98,15 +98,6 @@ resource "aws_security_group" "nat-instance-sg" {
   }
 }
 
-resource "aws_security_group_rule" "ssh_access" {
-  type = "ingress"
-  from_port = 22
-  to_port = 22
-  protocol = "-1"
-  cidr_blocks = ["103.59.135.94/32"]
-  security_group_id = aws_security_group.nat-instance-sg.id
-}
-
 resource "aws_security_group_rule" "vpc-inbound" {
   type = "ingress"
   from_port = 0
