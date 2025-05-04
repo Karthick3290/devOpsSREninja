@@ -85,7 +85,7 @@ resource "aws_route_table_association" "network-route-association" {
 }
 # Routing for NAT instance
 resource "aws_route" "outbound-nat-route" {
-  route_table_id = aws_route_table.network-route-private.id
+  route_table_id = aws_route_table.network-route-private[0].id
   destination_cidr_block = "0.0.0.0/0"
   network_interface_id = aws_instance.nat-instance.primary_network_interface_id
 }
@@ -103,7 +103,7 @@ resource "aws_security_group_rule" "ssh_access" {
   from_port = 22
   to_port = 22
   protocol = "-1"
-  cidr_blocks = "103.59.135.94"
+  cidr_blocks = ["103.59.135.94"]
   security_group_id = aws_security_group.nat-instance-sg.id
 }
 
