@@ -7,3 +7,5 @@ variable "private_subnet_cidr" {}
 variable "availability_zones" {}
 
 variable "flask_name" {}
+
+variable "ami_data" {}

@@ -81,7 +81,7 @@ resource "aws_security_group" "eks_nodes_sg" {
 
 resource "aws_launch_template" "node_template" {
   name = "flask-eks-launch-nodes"
-  image_id = var.ami_type
+  image_id = var.ami_data
   instance_type  = var.instance_types
   
   vpc_security_group_ids = [

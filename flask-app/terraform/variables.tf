@@ -17,24 +17,23 @@ variable "vpc_cidr" {
   type    = string
   default = "10.2.0.0/16"
 }
-variable "ami_type" {
+variable "ami_data" {
   type = string
-  default = "AL2_x86_64"
 }
 variable "instance_type" {
-  type = string
+  type    = string
   default = "t2.micro"
 }
 variable "capacity_type" {
-  type = string
+  type    = string
   default = "ON_DEMAND"
 }
 variable "disk_size" {
-  type = number
+  type    = number
   default = 20
 }
 variable "eks_version" {
-  type = string
+  type    = string
   default = "1.31"
 }
 

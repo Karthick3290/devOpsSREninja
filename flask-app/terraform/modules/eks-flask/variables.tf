@@ -1,4 +1,4 @@
-variable "ami_type" {}
+variable "ami_data" {}
 variable "instance_types" {}
 variable "capacity_type" {}
 variable "disk_size" {}
