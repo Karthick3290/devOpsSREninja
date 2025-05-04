@@ -53,7 +53,7 @@ data "aws_ami" "amazon_linux_2" {
 resource "aws_instance" "nat-instance" {
   ami = data.aws_ami.amazon_linux_2.id
   instance_type = "t2.micro"
-  subnet_id = aws_route_table.network-route-public.id
+  subnet_id = aws_subnet.public_subnets[0].id
   # vpc_security_group_ids = 
   associate_public_ip_address = true
   source_dest_check = false
