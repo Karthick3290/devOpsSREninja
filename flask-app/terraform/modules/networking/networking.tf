@@ -141,6 +141,7 @@ resource "aws_security_group_rule" "nat-instance-private-HTTPS" {
   protocol = "tcp"
   cidr_blocks = var.private_subnet_cidr
   security_group_id = aws_security_group.nat-instance-sg.id
+  depends_on = [ aws_security_group.nat-instance-sg]
 }
 
 resource "aws_security_group_rule" "outbound-nat-instance" {
