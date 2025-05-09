@@ -9,7 +9,7 @@ data "aws_ami" "amazon_linux_2" {
 
   filter {
     name   = "name"
-    values = ["amzn-ami-vpc-nat-*"]
+    values = ["amzn-ami-vpc-nat-hvm-*-x86_64-ebs"]
   }
 
   filter {
