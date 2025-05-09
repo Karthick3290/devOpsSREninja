@@ -55,7 +55,7 @@ resource "aws_instance" "nat-instance" {
   ami = var.ami_data
   instance_type = "t2.micro"
   subnet_id = aws_subnet.public_subnets[0].id
-  # vpc_security_group_ids = 
+  vpc_security_group_ids      = [aws_security_group.nat-instance-sg.id]
   associate_public_ip_address = true
   source_dest_check = false
   tags = {
